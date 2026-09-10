@@ -7,7 +7,7 @@ cask "waterbar" do
   desc "Menu bar tracker for the water Claude Code is estimated to drink"
   homepage "https://github.com/bmoresca/waterbar"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "WaterBar.app"
 
