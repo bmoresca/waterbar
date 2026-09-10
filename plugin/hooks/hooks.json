@@ -1,0 +1,38 @@
+{
+  "description": "Thirsty - tally water after every request and rewrite the spinner verb with what it cost. Uses WaterBar.app's engine when installed, Python otherwise.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/water-hook.sh\" hook",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/water-hook.sh\" hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/water-hook.sh\" hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

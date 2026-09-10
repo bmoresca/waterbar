@@ -1,0 +1,9 @@
+{
+  "name": "thirsty",
+  "version": "1.0.0",
+  "description": "Replaces Claude Code's thinking spinner with a live estimate of the water each request is drinking, and keeps a running ledger with milestones. Pairs with WaterBar.app.",
+  "author": {
+    "name": "Beto Moresca"
+  },
+  "keywords": ["water", "sustainability", "usage", "spinner", "fun"]
+}

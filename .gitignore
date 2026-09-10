@@ -1,0 +1,7 @@
+WaterBar/.build/
+WaterBar/WaterBar.app/
+WaterBar/*.iconset/
+WaterBar/*.icns
+dist/
+.claude/settings.local.json
+.DS_Store

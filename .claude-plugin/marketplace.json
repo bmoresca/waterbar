@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "thirsty-marketplace",
+  "description": "Local marketplace for the Thirsty plugin",
+  "owner": {
+    "name": "Beto Moresca"
+  },
+  "plugins": [
+    {
+      "name": "thirsty",
+      "description": "Replaces Claude Code's thinking spinner with a live estimate of the water each request is drinking, and keeps a running ledger with milestones.",
+      "author": { "name": "Beto Moresca" },
+      "category": "fun",
+      "source": "./plugin"
+    }
+  ]
+}
