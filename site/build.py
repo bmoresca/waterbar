@@ -72,6 +72,7 @@ TEMPLATE = """<!doctype html>
   html {{ scroll-behavior: smooth; }}
   body {{
     margin: 0;
+    overflow-x: hidden;
     background: var(--bg);
     color: var(--ink);
     font: 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
@@ -95,7 +96,8 @@ TEMPLATE = """<!doctype html>
   }}
   .brand {{ display: flex; align-items: center; gap: 9px; font-weight: 650; color: #fff; text-decoration: none; }}
   .brand span {{ font-size: 20px; }}
-  nav .links {{ display: flex; gap: 22px; align-items: center; }}
+  nav {{ flex-wrap: wrap; }}
+  nav .links {{ display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }}
   nav .links a {{ color: rgba(255,255,255,.82); text-decoration: none; }}
   nav .links a:hover {{ color: #fff; }}
 
@@ -145,10 +147,10 @@ TEMPLATE = """<!doctype html>
   .copy {{
     display: flex; align-items: stretch; gap: 0; margin-top: 26px;
     border: 1px solid rgba(255,255,255,.22); border-radius: 10px; overflow: hidden;
-    background: rgba(255,255,255,.07); max-width: 460px;
+    background: rgba(255,255,255,.07); max-width: 460px; min-width: 0;
   }}
   .copy code {{
-    flex: 1; padding: 13px 15px; color: #dceefc;
+    flex: 1; min-width: 0; padding: 13px 15px; color: #dceefc;
     font: 13.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
     overflow-x: auto; white-space: nowrap; display: flex; align-items: center;
   }}
@@ -220,7 +222,8 @@ TEMPLATE = """<!doctype html>
 
   /* ---------- steps ---------- */
   .steps {{ counter-reset: s; margin-top: 36px; display: grid; gap: 18px; }}
-  .step {{ display: grid; grid-template-columns: 34px 1fr; gap: 16px; align-items: start; }}
+  .step {{ display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px; align-items: start; }}
+  .step > div {{ min-width: 0; }}
   .step::before {{
     counter-increment: s; content: counter(s);
     width: 34px; height: 34px; border-radius: 50%; background: var(--deep); color: #fff;
@@ -240,6 +243,33 @@ TEMPLATE = """<!doctype html>
   }}
   .coffee:hover {{ background: rgba(255,255,255,.15); }}
   .fine {{ margin-top: 34px; font-size: 12.5px; color: rgba(255,255,255,.44); max-width: 70ch; }}
+  /* ---------- phones (last: media queries add no specificity) ---------- */
+  @media (max-width: 560px) {{
+    .wrap {{ padding: 0 18px; }}
+    section {{ padding: 52px 0; }}
+    nav {{ padding: 14px 0; gap: 10px; }}
+    /* Anchors to sections further down the page aren't worth a wrapped,
+       cramped second row on a phone; the GitHub link is. */
+    nav .links a:not(:last-child) {{ display: none; }}
+    .hero {{ padding-bottom: 56px; }}
+    .hero h1 {{ margin-top: 18px; }}
+    .hero p.sub {{ font-size: 16px; }}
+    .term {{ padding: 14px; font-size: 11.5px; }}
+    .term .meta {{ display: none; }}
+    .cta .btn {{ flex: 1 1 auto; justify-content: center; }}
+    .achs {{ grid-template-columns: 1fr; }}
+    .feat {{ padding: 18px; }}
+    .shot .frame {{ max-height: 380px; }}
+    .fgrid {{ gap: 22px; }}
+    /* On a phone the command matters more than the single-line look: wrap it
+       so the whole thing is readable without a sideways scroll nobody
+       discovers. */
+    .copy {{ align-items: center; }}
+    /* display:flex on the desktop rule makes the text one unwrappable flex
+       item, so it has to go back to block for the wrap to take. */
+    .copy code {{ display: block; white-space: pre-wrap; overflow-wrap: anywhere; }}
+    .copy button {{ align-self: stretch; }}
+  }}
 </style>
 </head>
 <body>
