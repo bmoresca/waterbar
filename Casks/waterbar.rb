@@ -1,6 +1,6 @@
 cask "waterbar" do
   version "1.0.0"
-  sha256 "6eb87f294be0e338d05e2125ae40dce6d776792fbf0b122f6603502ddf8bba8d"
+  sha256 "5b67f19eb3d5632452b380b8d6b54737b6d09b808d43c908be5aef4e29f079c7"
 
   url "https://github.com/bmoresca/waterbar/releases/download/v#{version}/WaterBar-#{version}.dmg"
   name "WaterBar"
